@@ -17,7 +17,7 @@ if (array_key_exists('apt-update', $_GET)) {
 }
 if (array_key_exists('apt-dist-upgrade', $_GET)) {
     $output
-        = `sudo /usr/bin/apt -q --dist-upgrade 2>&1 && sudo /usr/bin/apt -qy autoremove 2>&1 && sudo /usr/bin/apt -qy autoclean 2>&1`;
+        = `sudo /usr/bin/apt -qy dist-upgrade 2>&1 && sudo /usr/bin/apt -qy autoremove 2>&1 && sudo /usr/bin/apt -qy autoclean 2>&1`;
 }
 if (array_key_exists('tools', $_GET)) {
     $output = `sudo /usr/bin/git -C /var/www/juvem-tools pull 2>&1`;
