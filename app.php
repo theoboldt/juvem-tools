@@ -28,6 +28,9 @@ if (array_key_exists('cache', $_GET)) {
 if (array_key_exists('update', $_GET)) {
     $output = `sudo /bin/sh /mnt/juvemcrypt/do-upgrade.sh 2>&1`;
 }
+if (array_key_exists('db', $_GET)) {
+    $output = `sudo /bin/sh /mnt/juvemcrypt/db-upgrade.sh 2>&1`;
+}
 if (array_key_exists('disable', $_GET)) {
     $output = `sudo /usr/bin/touch /var/www/juvem/web/app-disabled`;
 }
@@ -48,6 +51,9 @@ if ($output !== null) {
     </li>
     <li>
         <a href="/app.php?update=1">Update</a>
+    </li>
+    <li>
+        <a href="/app.php?db=1">Datenbank-Update</a>
     </li>
     <li>
         <a href="/app.php?disable=1">Disable</a>
