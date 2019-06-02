@@ -11,7 +11,7 @@
 
 sleep(10);
 
-$output = `cd /var/www/juvem-tools && /usr/bin/git pull 2>&1`;
+$output = `sudo /usr/bin/git -C /var/www/juvem-tools pull 2>&1`;
 
 if ($output !== null) {
     echo '<pre>' . $output . '</pre>';
