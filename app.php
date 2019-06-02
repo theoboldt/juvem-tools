@@ -26,26 +26,26 @@ if (array_key_exists('cache', $_GET)) {
     $output = `sudo /bin/rm -rf /var/www/juvem/app/cache/*`;
 }
 if (array_key_exists('update', $_GET)) {
-    $output = `sudo /usr/bin/touch /var/www/juvem/app/web/app-disabled`;
+    $output = `sudo /usr/bin/touch /var/www/juvem/web/app-disabled`;
     $output .= `sudo /usr/bin/git -C /var/www/juvem pull 2>&1`;
     $output .= `sudo /bin/chown www-data:erik -R /var/www/juvem`;
     $output .= `sudo /bin/chmod ug+rw -R /var/www/juvem`;
-    $output .= `sudo /bin/rm /var/www/juvem/app/web/app-disabled`;
+    $output .= `sudo /bin/rm /var/www/juvem/web/app-disabled`;
 }
 if (array_key_exists('dep', $_GET)) {
-    $output = `sudo /usr/bin/touch /var/www/juvem/app/web/app-disabled`;
+    $output = `sudo /usr/bin/touch /var/www/juvem/web/app-disabled`;
     $output = `sudo /usr/bin/composer -d=/var/www/juvem --no-dev install`;
     $output = `sudo /usr/bin/composer -d=/var/www/juvem --optimize dump-autoload`;
     $output .= `sudo /bin/chown www-data:erik -R /var/www/juvem`;
     $output .= `sudo /bin/chmod ug+rw -R /var/www/juvem`;
-    $output .= `sudo /bin/rm /var/www/juvem/app/web/app-disabled`;
+    $output .= `sudo /bin/rm /var/www/juvem/web/app-disabled`;
 }
 if (array_key_exists('deploy', $_GET)) {
-    $output = `sudo /usr/bin/touch /var/www/juvem/app/web/app-disabled`;
-    $output .= `/usr/bin/touch /var/www/juvem/app/web/app-disabled && cd /var/www/juvem && /usr/bin/npm install && /usr/bin/grunt deploy && /bin/rm /var/www/juvem/app/web/app-disabled`;
+    $output = `sudo /usr/bin/touch /var/www/juvem/web/app-disabled`;
+    $output .= `/usr/bin/touch /var/www/juvem/web/app-disabled && cd /var/www/juvem && /usr/bin/npm install && /usr/bin/grunt deploy && /bin/rm /var/www/juvem/web/app-disabled`;
     $output .= `sudo /bin/chown www-data:erik -R /var/www/juvem`;
     $output .= `sudo /bin/chmod ug+rw -R /var/www/juvem`;
-    $output .= `sudo /bin/rm /var/www/juvem/app/web/app-disabled`;
+    $output .= `sudo /bin/rm /var/www/juvem/web/app-disabled`;
 }
 
 if ($output !== null) {
