@@ -37,6 +37,20 @@ if (array_key_exists('disable', $_GET)) {
 if (array_key_exists('enable', $_GET)) {
     $output .= `sudo /bin/rm /var/www/juvem/web/app-disabled`;
 }
+if (array_key_exists('logs', $_GET)) {
+    $file = '/var/www/juvem/app/logs/prod.log';
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: text/plain');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: '.filesize($file));
+        readfile($file);
+    }
+}
+
 
 if ($output !== null) {
     echo '<pre>' . $output . '</pre>';
@@ -72,5 +86,8 @@ if ($output !== null) {
     </li>
     <li>
         <a href="/self.php">Tools aktualisieren</a>
+    </li>
+    <li>
+        <a href="/app.php?logs=1">Protokolldatei abrufen</a>
     </li>
 </ul>
