@@ -23,7 +23,7 @@ if (array_key_exists('tools', $_GET)) {
     $output = `sudo /usr/bin/git -C /var/www/juvem-tools pull 2>&1`;
 }
 if (array_key_exists('cache', $_GET)) {
-    $output = `sudo /bin/rm -rf /var/www/juvem/app/cache/*`;
+    $output = `sudo /bin/rm -rf /var/www/juvem/var/cache/*`;
 }
 if (array_key_exists('update', $_GET)) {
     $output = `sudo /bin/sh /mnt/juvemcrypt/do-upgrade.sh 2>&1`;
@@ -32,13 +32,13 @@ if (array_key_exists('db', $_GET)) {
     $output = `sudo /bin/sh /mnt/juvemcrypt/db-upgrade.sh 2>&1`;
 }
 if (array_key_exists('disable', $_GET)) {
-    $output = `sudo /usr/bin/touch /var/www/juvem/web/app-disabled`;
+    $output = `sudo /usr/bin/touch /var/www/juvem/app/web/app-disabled`;
 }
 if (array_key_exists('enable', $_GET)) {
-    $output .= `sudo /bin/rm /var/www/juvem/web/app-disabled`;
+    $output .= `sudo /bin/rm /var/www/juvem/app/web/app-disabled`;
 }
 if (array_key_exists('logs', $_GET)) {
-    $file = '/var/www/juvem/app/logs/prod.log';
+    $file = '/var/www/juvem/var/log/prod.log';
     if (file_exists($file)) {
         header('Content-Description: File Transfer');
         header('Content-Type: text/plain');
