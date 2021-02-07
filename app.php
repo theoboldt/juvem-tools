@@ -50,7 +50,21 @@ if (array_key_exists('logs', $_GET)) {
         readfile($file);
     }
 }
+if (array_key_exists('juvemdata-mount', $_GET)) {
+    $output .= `sudo /bin/mount /bin/mount /mnt/juvemdata`;
+}
 
+if (array_key_exists('juvemdata-umount', $_GET)) {
+    $output .= `sudo /bin/sh /mnt/juvemcrypt/juvemdata-umount.sh`;
+}
+
+if (array_key_exists('samba-enable', $_GET)) {
+    $output .= `sudo /usr/sbin/service smbd start`;
+}
+
+if (array_key_exists('samba-disable', $_GET)) {
+    $output .= `sudo /usr/sbin/service smbd stop`;
+}
 
 if ($output !== null) {
     echo '<pre>' . $output . '</pre>';
@@ -90,4 +104,19 @@ if ($output !== null) {
     <li>
         <a href="/app.php?logs=1">Protokolldatei abrufen</a>
     </li>
+    <li>Juvemdata
+      <ul>
+        <li>
+            <a href="/app.php?juvemdata-mount=1">Dateisystem einbinden</a>
+        </li>
+        <li>
+            <a href="/app.php?juvemdata-umount=1">Dateisystem auswerfen</a>
+        </li>
+        <li>
+            <a href="/app.php?samba-enable=1">Dateifreigaben einschalten</a>
+        </li>
+        <li>
+            <a href="/app.php?samba-disable=1">Dateifreigaben ausschalten</a>
+        </li>
+      </ul>
 </ul>
