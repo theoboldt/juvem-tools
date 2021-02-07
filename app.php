@@ -104,7 +104,7 @@ if ($output !== null) {
     <li>
         <a href="/app.php?logs=1">Protokolldatei abrufen</a>
     </li>
-    <li>Juvemdata
+    <li>Juvemdata 
       <ul>
         <li>
             <a href="/app.php?juvemdata-mount=1">Dateisystem einbinden</a>
